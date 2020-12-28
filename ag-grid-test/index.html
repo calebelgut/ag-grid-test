@@ -1,83 +1,23 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <link rel="stylesheet" href="./style.css">
   <script src="https://unpkg.com/ag-grid-enterprise/dist/ag-grid-enterprise.min.noStyle.js"></script>
   <link rel="stylesheet" href="https://unpkg.com/ag-grid-community/dist/styles/ag-grid.css">
-  <link rel="stylesheet" href="https://unpkg.com/ag-grid-community/dist/styles/ag-theme-alpine.css">
+  <link rel="stylesheet" href="https://unpkg.com/ag-grid-community/dist/styles/ag-theme-balham.css">
 </head>
 <body>
-  <h1>Hello from ag-grid!</h1>
+  <h1>Hello, World!</h1>
 
-  <button onclick="getSelectedRows()">Get Selected Rows</button>
+  <!-- <button onclick ="getSelectedRows()">Get Selected Rows</button> -->
 
-  <div id="myGrid" style="height: 600px;width:500px;" class="ag-theme-alpine"></div>
+  <div id="myGrid" style="height: 600px; width: 500px;" class="ag-theme-balham"></div>
 
-  <script type="text/javascript" charset="utf-8">
-    // specify the columns
-    // var columnDefs = [
-    //   {headerName: "Make", field: "make", sortable: true, filter: true},
-    //   {headerName: "Model", field: "model", sortable: true, filter: true},
-    //   {headerName: "Price", field: "price", sortable: true, filter: true}
-    // ];
-
-    var columnDefs = [
-        {headerName: "Make", field: "make", rowGroup: true },
-        {headerName: "Price", field: "price"}
-    ];
-
-    var autoGroupColumnDef = {
-        headerName: "Model",
-        field: "model",
-        cellRenderer:'agGroupCellRenderer',
-        cellRendererParams: {
-            checkbox: true
-        }
-    }
-
-    // specify the data
-    // var rowData = [
-    //   {make: "Toyota", model: "Celica", price: 35000},
-    //   {make: "Ford", model: "Mondeo", price: 32000},
-    //   {make: "Porsche", model: "Boxter", price: 72000}
-    // ];
-
-    // let the grid know which columns and what data to use
-    // var gridOptions = {
-    //   columnDefs: columnDefs,
-    // //   rowData: rowData,
-    //   rowSelection: 'multiple'
-    // };
-
-    var gridOptions = {
-        columnDefs: columnDefs,
-        autoGroupColumnDef: autoGroupColumnDef,
-        groupSelectsChildren: true,
-        rowSelection: 'multiple'
-    };
-
-  // lookup the container we want the Grid to use
-  var eGridDiv = document.querySelector('#myGrid');
-
-  // create the grid passing in the div to use together with the columns & data we want to use
-  new agGrid.Grid(eGridDiv, gridOptions);
-
-  // port in data dynamically
-  agGrid.simpleHttpRequest({
-      url: 'https://raw.githubusercontent.com/ag-grid/ag-grid/master/grid-packages/ag-grid-docs/src/sample-data/rowData.json'
-  })
-
-    .then(function(data) {
-        gridOptions.api.setRowData(data);
-    })
-
-    function getSelectedRows() {
-        var selectedNodes = gridOptions.api.getSelectedNodes()
-        var selectedData = selectedNodes.map( function(node) { return node.data })
-        var selectedDataStringPresentation = selectedData.map( function(node) { return node.make + ' ' + 
-    node.model }).join(', ')
-        alert('Selected nodes: ' + selectedDataStringPresentation);
-  }
-
-  </script>
+  <script src="./main.js"></script>
 </body>
 </html>
